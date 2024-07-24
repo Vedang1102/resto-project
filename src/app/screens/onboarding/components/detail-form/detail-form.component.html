@@ -1,16 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Details Form</title>
+  <style>
+    body {
+      background-image: url("../../../../../assets/background.jpeg");
+      background-size: cover;
+      background-position: center;
+    }
+    .bg-blur {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  </style>
 </head>
-<body>
-    <div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+<body class="bg-gray-200 h-screen flex items-center justify-center">
+    <div class="fixed inset-0 bg-black bg-opacity-50"></div>
+    <div class="relative border z-10 bg-white bg-blur p-8 rounded-lg shadow-lg max-w-md w-full">
+    <h2 class="text-2xl font-bold text-center mb-6">Restaurant Details</h2>
+    <form class="space-y-4" [formGroup]="restroDetails" (ngSubmit)="displayRestroDetails()">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Name:</label>
+        <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" [formControl]="restroDetails.controls.name" required>
+      </div>
+      <div>
+        <label for="owner" class="block text-sm font-medium text-gray-700">Owner Name:</label>
+        <input type="text" id="owner" name="owner" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" [formControl]="restroDetails.controls.owner" required>
+      </div>
+      <!-- <div>
+        <label for="address" class="block text-sm font-medium text-gray-700">Address:</label>
+        <input type="text" id="address" name="address" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" [formControl]="restroDetails.controls.owner" required>
+      </div> -->
+      <div>
+        <label for="street" class="block text-sm font-medium text-gray-700">Street Name:</label>
+        <input type="text" id="street" name="street" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" [formControl]="restroDetails.controls.address.controls.street" required>
+      </div>
+      <div>
+        <label for="city" class="block text-sm font-medium text-gray-700">City:</label>
+        <input type="text" id="city" name="city" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" [formControl]="restroDetails.controls.address.controls.city" required>
+      </div>
+      <div>
+        <label for="zipcode" class="block text-sm font-medium text-gray-700">Zipcode:</label>
+        <input type="text" id="pincode" name="zipcode" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" [formControl]="restroDetails.controls.address.controls.zipcode" required>
+      </div>
+      <div>
+        <label for="type" class="block text-sm font-medium text-gray-700">Type:</label>
+        <input type="text" id="type" name="type" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" [formControl]="restroDetails.controls.type" required>
+      </div>
+      <div>
+        <label for="contact" class="block text-sm font-medium text-gray-700">Contact Details:</label>
+        <input type="text" id="contact" name="contact" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" [formControl]="restroDetails.controls.contact" required>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md shadow hover:bg-blue-700 transition">Submit</button>
+      </div>
+    </form>
+  </div>
 </body>
 </html>
-<p>detail-form works!</p>

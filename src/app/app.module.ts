@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-// import { DetailformComponent } from './components/detailform/detailform.component';
 import { OnboardingModule } from './screens/onboarding/onboarding.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { OnboardingModule } from './screens/onboarding/onboarding.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    OnboardingModule
+    OnboardingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
