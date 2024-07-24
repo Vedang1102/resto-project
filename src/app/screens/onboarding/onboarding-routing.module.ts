@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DetailFormComponent } from './components/detail-form/detail-form.component';
 
 const routes: Routes = [
-  { path: '', component: DetailFormComponent }
+  { path: 'form', component: DetailFormComponent }
 ];
 
 @NgModule({
