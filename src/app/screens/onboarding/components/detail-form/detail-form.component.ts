@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RestaurantRequest } from 'src/app/models/RestaurantRequest';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-detail-form',
@@ -28,10 +29,10 @@ export class DetailFormComponent  {
     contact: [0, Validators.required]
   });
 
-  constructor(private formBuilder : FormBuilder) { }
+  constructor(private formBuilder : FormBuilder, private backendService : BackendService) { }
 
   displayRestroDetails() {
-    console.log(this.restroDetails.value);
+    // console.log(this.restroDetails.value);
     this.createRequest(this.restroDetails);
   }
 
@@ -43,7 +44,10 @@ export class DetailFormComponent  {
     this.restaurantRequest.zipcode = details.value['address']['zipcode'];
     this.restaurantRequest.type = details.value['type'];
     this.restaurantRequest.contact = details.value['contact'];
-    console.log(this.restaurantRequest);
+    this.processRequest(this.restaurantRequest);
   }
 
+  processRequest(restaurantRequest: RestaurantRequest) {
+    this.backendService.onboardRestaurant(restaurantRequest);
+  }
 }
