@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RestaurantRequest } from 'src/app/models/RestaurantRequest';
 import { BackendService } from 'src/app/services/backend.service';
+import { AddressDetails } from 'src/app/models/address';
 
 @Component({
   selector: 'app-detail-form',
   templateUrl: './detail-form.component.html',
   styleUrls: ['./detail-form.component.scss']
 })
-export class DetailFormComponent  {
+export class DetailFormComponent {
   restaurantRequest: RestaurantRequest = new RestaurantRequest();
+  showModal: boolean = false;
 
   restroDetails = this.formBuilder.group({
     name: ['', Validators.required],
@@ -22,28 +24,56 @@ export class DetailFormComponent  {
     type: [''],
     contact: this.formBuilder.group({
       phone: [0, Validators.required],
-      email: ['']})
+      email: ['']
+    })
   });
 
-  constructor(private formBuilder : FormBuilder, private backendService : BackendService) { }
+  constructor(private formBuilder: FormBuilder, private backendService: BackendService) { }
 
-  displayRestroDetails() {
+  openConfirmModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+
+  submitDetails() {
     this.createRequest(this.restroDetails);
+    this.showModal = false;
   }
 
   createRequest(details: FormGroup) {
-    this.restaurantRequest.name = details.value['name'];
-    this.restaurantRequest.owner = details.value['owner'];
-    this.restaurantRequest.street = details.value['address']['street'];
-    this.restaurantRequest.city = details.value['address']['city'];
-    this.restaurantRequest.zipCode = details.value['address']['zipCode'];
-    this.restaurantRequest.type = details.value['type'];
-    this.restaurantRequest.phone = details.value['contact']['phone'];
-    this.restaurantRequest.email = details.value['contact']['email'];
+    const addressDetails: AddressDetails = {
+      id: 0,
+      streetName: details.value['address']['street'],
+      city: details.value['address']['city'],
+      pinCode: details.value['address']['zipCode']
+    };
+  
+
+    this.restaurantRequest = {
+      id: 0,
+      name: details.value['name'],
+      ownerName: details.value['owner'],
+      restroType: details.value['type'],
+      addressDetails: addressDetails,
+      phone: details.value['contact']['phone'],
+      email: details.value['contact']['email']
+    };
+  
     this.processRequest(this.restaurantRequest);
   }
 
   processRequest(restaurantRequest: RestaurantRequest) {
-    this.backendService.onboardRestaurant(restaurantRequest);
+    this.backendService.onboardRestaurant(restaurantRequest).subscribe({
+      next: () => {
+        alert('Details submitted successfully!');
+      },
+      error: () => {
+        alert('Failed to submit details. Please try again.');
+      }
+    });
   }
+
 }

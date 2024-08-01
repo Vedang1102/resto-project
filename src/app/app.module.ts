@@ -7,12 +7,14 @@ import { OnboardingModule } from './screens/onboarding/onboarding.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
