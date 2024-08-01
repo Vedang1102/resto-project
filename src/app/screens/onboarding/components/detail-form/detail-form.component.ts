@@ -9,30 +9,25 @@ import { BackendService } from 'src/app/services/backend.service';
   styleUrls: ['./detail-form.component.scss']
 })
 export class DetailFormComponent  {
-
-  // restroDetails = new FormGroup({
-  //   name : new FormControl<string>(''),
-  //   owner : new FormControl<string>('')
-  // });
-
   restaurantRequest: RestaurantRequest = new RestaurantRequest();
 
   restroDetails = this.formBuilder.group({
-    name: ['',Validators.required],
+    name: ['', Validators.required],
     owner: [''],
     address: this.formBuilder.group({
       street: [''],
       city: [''],
-      zipcode: [0]
+      zipCode: [0]
     }),
     type: [''],
-    contact: [0, Validators.required]
+    contact: this.formBuilder.group({
+      phone: [0, Validators.required],
+      email: ['']})
   });
 
   constructor(private formBuilder : FormBuilder, private backendService : BackendService) { }
 
   displayRestroDetails() {
-    // console.log(this.restroDetails.value);
     this.createRequest(this.restroDetails);
   }
 
@@ -41,9 +36,10 @@ export class DetailFormComponent  {
     this.restaurantRequest.owner = details.value['owner'];
     this.restaurantRequest.street = details.value['address']['street'];
     this.restaurantRequest.city = details.value['address']['city'];
-    this.restaurantRequest.zipcode = details.value['address']['zipcode'];
+    this.restaurantRequest.zipCode = details.value['address']['zipCode'];
     this.restaurantRequest.type = details.value['type'];
-    this.restaurantRequest.contact = details.value['contact'];
+    this.restaurantRequest.phone = details.value['contact']['phone'];
+    this.restaurantRequest.email = details.value['contact']['email'];
     this.processRequest(this.restaurantRequest);
   }
 

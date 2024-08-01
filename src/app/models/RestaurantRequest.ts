@@ -1,9 +1,10 @@
 export class RestaurantRequest {
     name : string = '';
     owner : string = '';
+    type : string = '';
     street : string = '';
     city : string = '';
-    zipcode : number = 0;
-    type : string = '';
-    contact : number = 0;
+    zipCode : number = 0;
+    phone : number = 0;
+    email : string = '';
 }
