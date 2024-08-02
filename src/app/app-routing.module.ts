@@ -7,22 +7,16 @@ import { ListRestoComponent } from './screens/onboarding/components/list-resto/l
 const routes: Routes = [
   {
     path: 'onboarding',
-    // loadChildren: () => import('./screens/onboarding/onboarding.module').then(m => m.OnboardingModule)
     component: DetailFormComponent
   },
   {
-    path: 'home', component: HomeComponent
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: 'list-resto',
     component: ListRestoComponent
   }
-  // {
-  //   path: '', redirectTo: '/home', pathMatch: 'full'
-  // },
-  // {
-  //   path: '**', redirectTo: '/home'
-  // }
 ];
 
 @NgModule({
