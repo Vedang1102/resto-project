@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OnboardingRoutingModule } from './onboarding-routing.module';
-import { DetailFormComponent } from './components/detail-form/detail-form.component';
+import { DetailFormComponent } from './detail-form/detail-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ListRestoComponent } from './components/list-resto/list-resto.component';
-import { ModalComponent } from './components/modal/modal.component';
+import { ListRestoComponent } from '../list-resto/list-resto/list-resto.component';
+import { ModalComponent } from '../onboarding/modal/modal.component';
 
 @NgModule({
   declarations: [

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DetailFormComponent } from './components/detail-form/detail-form.component';
+import { DetailFormComponent } from './detail-form/detail-form.component';
 
 const routes: Routes = [
   { path: 'form', component: DetailFormComponent }
