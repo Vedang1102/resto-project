@@ -12,14 +12,3 @@ export class RestaurantRequest {
         phone: number = 0;
         email: string = '';
     }
-
-
-// export class RestaurantRequest {
-
-//     name: string = '';
-//     ownerName: string = '';
-//     restroType: string = '';
-//     addressDetails: AddressDetails = new AddressDetails();
-//     phone: number = 0;
-//     email: string = '';
-// }
